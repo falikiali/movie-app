@@ -4,6 +4,7 @@ import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import com.falikiali.movieapp.data.paging.MoviePagingSource
+import com.falikiali.movieapp.data.paging.SearchMoviePagingSource
 import com.falikiali.movieapp.data.remote.api.ApiService
 import com.falikiali.movieapp.data.remote.dto.ItemMovieResponse
 import com.falikiali.movieapp.domain.repository.MovieRepository
@@ -20,6 +21,19 @@ class ImplMovieRepository @Inject constructor(private val apiService: ApiService
             ),
             pagingSourceFactory = {
                 MoviePagingSource(apiService)
+            }
+        ).flow
+    }
+
+    override fun searchMovie(query: String): Flow<PagingData<ItemMovieResponse>> {
+        return Pager(
+            config = PagingConfig(
+                pageSize = 10,
+                initialLoadSize = 10,
+                prefetchDistance = 1
+            ),
+            pagingSourceFactory = {
+                SearchMoviePagingSource(apiService, query)
             }
         ).flow
     }

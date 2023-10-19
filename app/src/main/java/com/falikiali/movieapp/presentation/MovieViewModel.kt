@@ -10,6 +10,6 @@ import javax.inject.Inject
 @HiltViewModel
 class MovieViewModel @Inject constructor(private val movieUseCase: MovieUseCase): ViewModel() {
 
-    val getMovies = movieUseCase.getMovies().cachedIn(viewModelScope)
+    val movies = movieUseCase.getMovies().cachedIn(viewModelScope)
 
 }

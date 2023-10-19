@@ -8,4 +8,6 @@ interface MovieUseCase {
 
     fun getMovies(): Flow<PagingData<Movie>>
 
+    fun searchMovie(query: String): Flow<PagingData<Movie>>
+
 }
