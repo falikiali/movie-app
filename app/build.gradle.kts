@@ -19,6 +19,9 @@ android {
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+
+        buildConfigField("String", "BASE_URL_API", "\"https://api.themoviedb.org/3/\"")
+        buildConfigField("String", "TOKEN", "\"eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI0MzUyZjIwYjM3MGY1MTU5ZTI4MmExMDQyNzUzNDYxMyIsInN1YiI6IjYwN2ZhNmE5ZTZkM2NjMDA3NzVlNTBmMSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.f734PM8z6-vgNVcCFiGFkLrb2mPfjWwuVHcmPbXyZmo\"")
     }
 
     buildTypes {
@@ -36,6 +39,10 @@ android {
     }
     kotlinOptions {
         jvmTarget = "1.8"
+    }
+    buildFeatures {
+        viewBinding = true
+        buildConfig = true
     }
 }
 
@@ -65,5 +72,7 @@ dependencies {
 
     implementation(libs.hilt.android)
     kapt(libs.hilt.compiler)
+
+    implementation(libs.paging.runtime.ktx)
 
 }

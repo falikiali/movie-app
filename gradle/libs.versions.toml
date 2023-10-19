@@ -9,7 +9,7 @@ junit = "4.13.2"
 androidx-test-ext-junit = "1.1.5"
 espresso-core = "3.5.1"
 appcompat = "1.6.1"
-material = "1.10.0"
+material = "1.9.0"
 constraintlayout = "2.1.4"
 
 lifecycle-viewmodel-ktx = "2.6.2"
@@ -24,6 +24,8 @@ retrofit = "2.9.0"
 okhttp = "4.9.0"
 
 hilt = "2.48.1"
+
+paging = "3.1.0"
 
 [libraries]
 core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "core-ktx" }
@@ -50,6 +52,8 @@ logging-interceptor = { group = "com.squareup.okhttp3", name = "logging-intercep
 
 hilt-android = { group = "com.google.dagger", name = "hilt-android", version.ref = "hilt" }
 hilt-compiler = { group = "com.google.dagger", name = "hilt-compiler", version.ref = "hilt" }
+
+paging-runtime-ktx = { group = "androidx.paging", name = "paging-runtime-ktx", version.ref = "paging" }
 
 
 [plugins]
