@@ -5,5 +5,6 @@ data class DetailMovie(
     val title: String,
     val backdropPath: String,
     val releaseDate: String,
-    val id: Int
+    val id: Int,
+    val genres: List<String>
 )

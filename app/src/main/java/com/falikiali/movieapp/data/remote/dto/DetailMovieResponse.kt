@@ -17,7 +17,10 @@ data class DetailMovieResponse(
     val releaseDate: String,
 
     @field:SerializedName("id")
-    val id: Int
+    val id: Int,
+
+    @field:SerializedName("genres")
+    val genres: List<GenresDetailMovieResponse>
 ) {
     fun toDomain(): DetailMovie {
         return DetailMovie(
@@ -25,7 +28,16 @@ data class DetailMovieResponse(
             title,
             backdropPath,
             releaseDate,
-            id
+            id,
+            genres.map { it.name }
         )
     }
 }
+
+data class GenresDetailMovieResponse(
+    @field:SerializedName("id")
+    val id: Int,
+
+    @field:SerializedName("name")
+    val name: String
+)

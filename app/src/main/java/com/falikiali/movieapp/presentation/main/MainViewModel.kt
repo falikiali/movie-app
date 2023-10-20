@@ -1,4 +1,4 @@
-package com.falikiali.movieapp.presentation
+package com.falikiali.movieapp.presentation.main
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -8,7 +8,7 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
 @HiltViewModel
-class MovieViewModel @Inject constructor(private val movieUseCase: MovieUseCase): ViewModel() {
+class MainViewModel @Inject constructor(private val movieUseCase: MovieUseCase): ViewModel() {
 
     val movies = movieUseCase.getMovies().cachedIn(viewModelScope)
 
