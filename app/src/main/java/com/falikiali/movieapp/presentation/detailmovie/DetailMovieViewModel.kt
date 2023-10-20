@@ -1,4 +1,4 @@
-package com.falikiali.movieapp.presentation
+package com.falikiali.movieapp.presentation.detailmovie
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
