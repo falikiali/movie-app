@@ -1,6 +1,7 @@
 package com.falikiali.movieapp.domain.model
 
-data class Movie(
+data class DetailMovie(
+    val overview: String,
     val title: String,
     val backdropPath: String,
     val releaseDate: String,
