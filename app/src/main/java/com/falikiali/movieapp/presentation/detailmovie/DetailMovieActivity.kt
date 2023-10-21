@@ -34,8 +34,8 @@ class DetailMovieActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
         getDetailMovie()
-        checkFavoriteMovie()
         observeViewModel()
+        actionBtnRetry()
     }
 
     override fun onSupportNavigateUp(): Boolean {
@@ -69,6 +69,12 @@ class DetailMovieActivity : AppCompatActivity() {
         }
     }
 
+    private fun actionBtnRetry() {
+        binding.btnRetry.setOnClickListener {
+            getDetailMovie()
+        }
+    }
+
     private fun observeViewModel() {
         with(viewModel) {
             detailMovieState.observe(this@DetailMovieActivity) {
@@ -76,6 +82,7 @@ class DetailMovieActivity : AppCompatActivity() {
                     progressBar.isVisible = it is ResultState.Loading
                     btnRetry.isVisible = it is ResultState.Failed
                     detailView.isVisible = it is ResultState.Success
+                    appbar.isVisible = it is ResultState.Success
 
                     if (it is ResultState.Success) {
                         setActionBar(it.data.title ?: "Unknown")
@@ -94,6 +101,7 @@ class DetailMovieActivity : AppCompatActivity() {
                             .load("https://image.tmdb.org/t/p/original" + it.data.backdropPath)
                             .into(binding.ivBackdrop)
 
+                        checkFavoriteMovie()
                         actionBtnFavorite(
                             FavoriteMovie(
                                 it.data.title ?: "Unknown",
