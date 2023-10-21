@@ -23,6 +23,9 @@ class DetailMovieViewModel @Inject constructor(private val movieUseCase: MovieUs
     private val _isFavorited = MutableLiveData<Boolean>()
     val isFavorited: LiveData<Boolean> get() = _isFavorited
 
+    private val _isAddedToFavorite = MutableLiveData<Boolean>()
+    val isAddedToFavorite: LiveData<Boolean> get() = _isAddedToFavorite
+
     fun getDetailMovie(id: Int) {
         viewModelScope.launch {
             movieUseCase.getDetailMovie(id).collect {
@@ -45,11 +48,13 @@ class DetailMovieViewModel @Inject constructor(private val movieUseCase: MovieUs
                 movieUseCase.removeFavorite(favoriteMovie)
             }
             _isFavorited.value = !_isFavorited.value!!
+            _isAddedToFavorite.value = false
         } else {
             viewModelScope.launch {
                 movieUseCase.addToFavorite(favoriteMovie)
             }
             _isFavorited.value = !_isFavorited.value!!
+            _isAddedToFavorite.value = true
         }
     }
 

@@ -17,29 +17,13 @@ class ImplMovieUseCase @Inject constructor(private val movieRepository: MovieRep
      */
     override fun getMovies(): Flow<PagingData<Movie>> {
         return movieRepository.getMovies().map { data ->
-            data.map {
-                Movie(
-                    it.title,
-                    it.backdropPath,
-                    it.releaseDate,
-                    it.id,
-                    it.overview
-                )
-            }
+            data.map { it.toDomain() }
         }
     }
 
     override fun searchMovie(query: String): Flow<PagingData<Movie>> {
         return movieRepository.searchMovie(query).map { data ->
-            data.map {
-                Movie(
-                    it.title,
-                    it.backdropPath,
-                    it.releaseDate,
-                    it.id,
-                    it.overview
-                )
-            }
+            data.map { it.toDomain() }
         }
     }
 

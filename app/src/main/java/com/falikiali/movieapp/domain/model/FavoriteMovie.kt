@@ -4,11 +4,11 @@ import com.falikiali.movieapp.data.local.entity.FavoriteMovieEntity
 
 data class FavoriteMovie(
     val title: String,
-    val backdropPath: String,
+    val posterPath: String,
     val releaseDate: String,
     val id: Int
 ) {
     fun toEntity(): FavoriteMovieEntity {
-        return FavoriteMovieEntity(id, title, backdropPath, releaseDate)
+        return FavoriteMovieEntity(id, title, posterPath, releaseDate)
     }
 }

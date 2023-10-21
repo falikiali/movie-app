@@ -14,6 +14,7 @@ import androidx.paging.LoadState
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.falikiali.movieapp.R
 import com.falikiali.movieapp.databinding.ActivityMainBinding
+import com.falikiali.movieapp.presentation.detailmovie.DetailMovieActivity
 import com.falikiali.movieapp.presentation.search.SearchActivity
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
@@ -64,8 +65,11 @@ class MainActivity : AppCompatActivity() {
         val loadStateAdapter = MovieLoadStateAdapter(onClickRetry = {
             mainPagingAdapter.retry()
         })
+
         mainPagingAdapter = MainPagingAdapter(onItemClick = {
-            Toast.makeText(this@MainActivity, it.title, Toast.LENGTH_SHORT).show()
+            val intent = Intent(this@MainActivity, DetailMovieActivity::class.java)
+            intent.putExtra(DetailMovieActivity.ID_MOVIE, it.id)
+            startActivity(intent)
         })
 
         val adapterWithLoadStateAdapter = mainPagingAdapter.withLoadStateFooter(loadStateAdapter)

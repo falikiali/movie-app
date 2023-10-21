@@ -1,5 +1,6 @@
 package com.falikiali.movieapp.data.remote.dto
 
+import com.falikiali.movieapp.domain.model.Movie
 import com.google.gson.annotations.SerializedName
 
 data class MovieResponse(
@@ -22,8 +23,8 @@ data class ItemMovieResponse(
     @field:SerializedName("title")
     val title: String? = null,
 
-    @field:SerializedName("backdrop_path")
-    val backdropPath: String? = null,
+    @field:SerializedName("poster_path")
+    val posterPath: String? = null,
 
     @field:SerializedName("release_date")
     val releaseDate: String? = null,
@@ -33,4 +34,14 @@ data class ItemMovieResponse(
 
     @field:SerializedName("overview")
     val overview: String?= null
-)
+) {
+    fun toDomain(): Movie {
+        return Movie(
+            title,
+            posterPath,
+            releaseDate,
+            id,
+            overview
+        )
+    }
+}

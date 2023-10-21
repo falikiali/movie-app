@@ -16,10 +16,15 @@
         android:theme="@style/Theme.MovieApp"
         tools:targetApi="31">
         <activity
-            android:theme="@style/Theme.MovieApp.NoActionBar"
+            android:name=".presentation.detailmovie.DetailMovieActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.MovieApp.NoActionBar"/>
+        <activity
             android:name=".presentation.search.SearchActivity"
             android:exported="false"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.MovieApp.NoActionBar" />
         <activity
             android:name=".presentation.main.MainActivity"
             android:exported="true"

@@ -37,7 +37,7 @@ class MainPagingAdapter(
                 tvReleaseDate.text = date?.get(0) ?: "-"
 
                 Glide.with(itemView.context)
-                    .load("https://image.tmdb.org/t/p/original" + data.backdropPath)
+                    .load("https://image.tmdb.org/t/p/original" + data.posterPath)
                     .into(binding.ivPoster)
             }
         }
