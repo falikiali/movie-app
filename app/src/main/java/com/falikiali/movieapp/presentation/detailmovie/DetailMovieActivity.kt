@@ -1,18 +1,24 @@
 package com.falikiali.movieapp.presentation.detailmovie
 
+import android.app.Notification
+import android.app.NotificationManager
+import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.TextUtils
 import android.widget.Toast
 import androidx.activity.viewModels
+import androidx.core.app.NotificationCompat
 import androidx.core.view.isVisible
 import com.bumptech.glide.Glide
 import com.falikiali.movieapp.R
 import com.falikiali.movieapp.databinding.ActivityDetailMovieBinding
 import com.falikiali.movieapp.domain.model.FavoriteMovie
+import com.falikiali.movieapp.utils.Constants
 import com.falikiali.movieapp.utils.ResultState
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
+import okhttp3.internal.notify
 
 @AndroidEntryPoint
 class DetailMovieActivity : AppCompatActivity() {
@@ -109,18 +115,25 @@ class DetailMovieActivity : AppCompatActivity() {
             }
 
             viewModel.isAddedToFavorite.observe(this@DetailMovieActivity) {
-                if (it) {
-                    showSnackbar("Add to favorite")
+                if (it.isAddedToFavorite) {
+                    showNotification("Add ${it.movie} to favorite")
                 } else {
-                    showSnackbar("Remove to favorite")
+                    showNotification("Remove ${it.movie} from favorite")
                 }
             }
         }
     }
 
-    private fun showSnackbar(snackbarMessage: String) {
-        Snackbar.make(binding.root, snackbarMessage, Snackbar.LENGTH_SHORT)
-            .show()
+    private fun showNotification(body: String) {
+        val builder = NotificationCompat.Builder(this, Constants.NOTIFICATION_CHANNEL_ID)
+            .setContentTitle("Movie App")
+            .setContentText(body)
+            .setSmallIcon(R.mipmap.ic_launcher)
+            .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+
+        val mNotificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+        val id = System.currentTimeMillis().toInt() + Constants.NOTIFICATION_ID.toInt()
+        mNotificationManager.notify(id, builder.build())
     }
 
 }
