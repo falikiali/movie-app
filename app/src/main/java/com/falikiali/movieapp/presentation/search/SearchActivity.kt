@@ -1,5 +1,6 @@
 package com.falikiali.movieapp.presentation.search
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.appcompat.widget.SearchView
@@ -11,6 +12,7 @@ import androidx.paging.CombinedLoadStates
 import androidx.paging.LoadState
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.falikiali.movieapp.databinding.ActivitySearchBinding
+import com.falikiali.movieapp.presentation.detailmovie.DetailMovieActivity
 import com.falikiali.movieapp.presentation.main.MovieLoadStateAdapter
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
@@ -52,7 +54,9 @@ class SearchActivity : AppCompatActivity() {
             searchPagingAdapter.retry()
         })
         searchPagingAdapter = SearchPagingAdapter(onItemClick = {
-            Toast.makeText(this@SearchActivity, it.title, Toast.LENGTH_SHORT).show()
+            val intent = Intent(this@SearchActivity, DetailMovieActivity::class.java)
+            intent.putExtra(DetailMovieActivity.ID_MOVIE, it.id)
+            startActivity(intent)
         })
 
         val adapterWithLoadStateAdapter = searchPagingAdapter.withLoadStateFooter(loadStateAdapter)

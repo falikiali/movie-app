@@ -99,6 +99,7 @@ class DetailMovieActivity : AppCompatActivity() {
                                 it.data.title ?: "Unknown",
                                 it.data.posterPath ?: "-",
                                 it.data.releaseDate ?: "-",
+                                it.data.overview ?: "-",
                                 it.data.id ?: 0
                             )
                         )

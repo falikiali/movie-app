@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.falikiali.movieapp.R
 import com.falikiali.movieapp.databinding.ActivityMainBinding
 import com.falikiali.movieapp.presentation.detailmovie.DetailMovieActivity
+import com.falikiali.movieapp.presentation.favorite.FavoriteActivity
 import com.falikiali.movieapp.presentation.search.SearchActivity
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
@@ -50,7 +51,8 @@ class MainActivity : AppCompatActivity() {
             }
 
             R.id.menu_favorite -> {
-                Toast.makeText(this@MainActivity, "Favorite", Toast.LENGTH_SHORT).show()
+               val intent = Intent(this@MainActivity, FavoriteActivity::class.java)
+                startActivity(intent)
             }
         }
 

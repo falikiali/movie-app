@@ -48,13 +48,13 @@ class DetailMovieViewModel @Inject constructor(private val movieUseCase: MovieUs
                 movieUseCase.removeFavorite(favoriteMovie)
             }
             _isFavorited.value = !_isFavorited.value!!
-            _isAddedToFavorite.value = FavoriteData(false, favoriteMovie.title)
+            _isAddedToFavorite.value = FavoriteData(false, favoriteMovie.title!!)
         } else {
             viewModelScope.launch {
                 movieUseCase.addToFavorite(favoriteMovie)
             }
             _isFavorited.value = !_isFavorited.value!!
-            _isAddedToFavorite.value = FavoriteData(true, favoriteMovie.title)
+            _isAddedToFavorite.value = FavoriteData(true, favoriteMovie.title!!)
         }
     }
 

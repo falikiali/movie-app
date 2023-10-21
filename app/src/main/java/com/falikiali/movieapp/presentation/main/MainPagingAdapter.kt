@@ -22,7 +22,6 @@ class MainPagingAdapter(
             override fun areContentsTheSame(oldItem: Movie, newItem: Movie): Boolean {
                 return oldItem == newItem
             }
-
         }
     }
 

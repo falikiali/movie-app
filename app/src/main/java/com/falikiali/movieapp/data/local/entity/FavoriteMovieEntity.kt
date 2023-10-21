@@ -10,6 +10,7 @@ data class FavoriteMovieEntity(
     @PrimaryKey @ColumnInfo("id") val id: Int,
     @ColumnInfo("title") val title: String,
     @ColumnInfo("image") val image: String,
+    @ColumnInfo("overview") val overview: String,
     @ColumnInfo("release_date") val releaseDate: String
 ) {
     fun toDomain(): FavoriteMovie {
@@ -17,6 +18,7 @@ data class FavoriteMovieEntity(
             title,
             image,
             releaseDate,
+            overview,
             id
         )
     }

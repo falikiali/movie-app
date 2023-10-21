@@ -82,4 +82,6 @@ dependencies {
 
     implementation(libs.glide)
 
+    implementation(libs.lottie)
+
 }
